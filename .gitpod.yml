@@ -1,0 +1,17 @@
+image:
+  file: Dockerfile
+
+ports:
+  - port: 80
+    onOpen: open-preview
+  - port: 8080
+    onOpen: ignore
+
+tasks:
+  - name: Start VNC
+    init: |
+      bash /startup.sh &
+  - name: Download and Start Playit
+    command: |
+      curl -fsSL https://playit-cloud.github.io/cli/install.sh | bash
+      ./playit
